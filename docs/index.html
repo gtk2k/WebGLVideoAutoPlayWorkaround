@@ -32,10 +32,12 @@
       <div id="unity-fullscreen-button"></div>
       <div id="unity-build-title">WebGLVideoAutoPlayWorkaround</div>
     </div>
+    <audio id="waa" src="silent.mp3"></audio>
   </div>
   <script>
     var unityInstance;
     startButton.onclick = evt => {
+      waa.play();
       unityInstance = UnityLoader.instantiate('unityContainer', 'Build/NBWebGLBuild.json', { onProgress: UnityProgress });
     };
   </script>
