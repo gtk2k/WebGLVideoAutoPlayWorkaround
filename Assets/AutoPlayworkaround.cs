@@ -1,6 +1,9 @@
-﻿using System.IO;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class AutoPlayworkaround : MonoBehaviour
@@ -9,11 +12,22 @@ public class AutoPlayworkaround : MonoBehaviour
     private static extern void workaround();
 
     public VideoPlayer player;
+    public Button startButton;
+    
 
     void Start()
     {
         workaround();
 
+        startButton.onClick.AddListener(() =>
+        {
+            StartCoroutine(delayedPlay());
+        });
+    }
+
+    private IEnumerator delayedPlay()
+    {
+        yield return new WaitForSeconds(1);
         player.url = Path.Combine(Application.streamingAssetsPath, "BigBuckBunny.mp4");
         player.Play();
     }
