@@ -19,6 +19,9 @@ public class AutoPlayworkaround : MonoBehaviour
     {
         workaround();
 
+        player.url = Path.Combine(Application.streamingAssetsPath, "BigBuckBunny.mp4");
+        player.Play();
+
         startButton.onClick.AddListener(() =>
         {
             StartCoroutine(delayedPlay());
